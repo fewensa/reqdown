@@ -20,20 +20,23 @@ async function route() {
         const url = request.url;
         const now = new Date().toISOString();
 
-        const body = JSON.stringify(request.body);
-        try {
-          const file = `/data/${now}.txt`;
-          fs.writeFileSync(
-            file,
-            `
-            ${url}
-            --------
-            ${body}
-            `
-            );
-          // file written successfully
-        } catch (err) {
-          console.error(err);
+        const reqbody = request.body;
+        if (reqbody) {
+          try {
+            const body = JSON.stringify(reqbody);
+            const file = `/data/${now}.txt`;
+            fs.writeFileSync(
+              file,
+              `
+              ${url}
+              --------
+              ${body}
+              `
+              );
+            // file written successfully
+          } catch (err) {
+            console.error(err);
+          }
         }
 
         return process.env.PROXY_ENDPOINT;
