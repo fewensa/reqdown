@@ -15,38 +15,33 @@ async function route() {
     prefix: '/:path(.*)',
     rewritePrefix: '/:path',
     http2: false,
+    async preHandler(request, reply, next) {
+      const url = request.url;
+      const now = new Date().toISOString();
+      const reqbody = request.body;
+      if (reqbody) {
+        try {
+          const body = JSON.stringify(reqbody);
+          const file = `/data/${now}.txt`;
+          fs.writeFileSync(
+            file,
+            `
+            ${url}
+            --------
+            ${body}
+            `
+            );
+          // file written successfully
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      next();
+      return reply;
+    },
     replyOptions: {
       getUpstream: function (request: FastifyRequest) {
         return process.env.PROXY_ENDPOINT;
-      },
-      replyOptions: {
-        rewriteRequestHeaders: (originalReq, headers) => {
-          const url = originalReq.url;
-          const now = new Date().toISOString();
-          const reqbody = originalReq.body;
-          if (reqbody) {
-            try {
-              const body = JSON.stringify(reqbody);
-              const file = `/data/${now}.txt`;
-              fs.writeFileSync(
-                file,
-                `
-                ${url}
-                --------
-                ${body}
-                `
-                );
-              // file written successfully
-            } catch (err) {
-              console.error(err);
-            }
-          }
-
-          return {
-            ...headers,
-            'x-time': now,
-          };
-        },
       },
     },
   });
