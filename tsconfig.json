@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "build",
+    "declarationDir": "build",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "__tests__",
+    "node_modules",
+    "build",
+    "dist",
+    "target"
+  ]
+}

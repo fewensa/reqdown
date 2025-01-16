@@ -1,0 +1,26 @@
+{
+  "name": "reqdown",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc",
+    "serve": "npm run build && node build/index.js",
+    "dev": "npx nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.1.0",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "@fastify/http-proxy": "^9.5.0",
+    "fastify": "^4.28.1"
+  },
+  "files": [
+    "dist",
+    "build"
+  ]
+}
