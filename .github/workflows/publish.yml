@@ -32,7 +32,6 @@ jobs:
         with:
           push: true
           context: .
-          file: docker/cli.Dockerfile
           tags: ${{ env.DOCKER_REGISTRY }}/${{ github.repository }}:sha-${{ env.SHA }}
 
       - name: Publish docker image tag
