@@ -5,6 +5,7 @@ const fs = require("node:fs");
 
 const fastify = Fastify({
   logger: true,
+  bodyLimit: 1024 * 1024 * 20,
 });
 
 async function route() {
