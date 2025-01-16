@@ -11,8 +11,8 @@ env:
 
 jobs:
 
-  release-relayer:
-    name: Release relayer
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
